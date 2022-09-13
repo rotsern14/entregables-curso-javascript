@@ -269,51 +269,17 @@ initTarjeta();
 initRam();
 initPower();
 
-/* let arregloCPU = [
-  { id: 1, nombre: "Intel i3", precio: 55000 },
-  { id: 2, nombre: "Intel i5", precio: 65000 },
-  { id: 3, nombre: "Intel i7", precio: 75000 },
-];
-
-let arregloMonitor = [
-  { id: 1, nombre: "Monitor Samsung 22 inch", precio: 63000 },
-  { id: 2, nombre: "Monitor LG 27 inch", precio: 75000 },
-  { id: 3, nombre: "Monitor Itachi 27 inch", precio: 61000 },
-];
-
-let arregloDiscoDuro = [
-  { id: 1, nombre: "WD 500 GB", precio: 15000 },
-  { id: 2, nombre: "Samsung 1TB", precio: 30000 },
-  { id: 3, nombre: "Adata 2TB", precio: 38000 },
-];
 
 
-let arregloTarjeta = [
-  { id: 1, nombre: "Mother Board Intel", precio: 45000 },
-  { id: 2, nombre: "Mother Board Asus", precio: 65000 },
-  { id: 3, nombre: "Mother Board Gigabit", precio: 77000 },
-];
-
-
-
-let arregloMemoriRam = [
-  { id: 1, nombre: "ADATA 8 GB DDR3", precio: 16000 },
-  { id: 2, nombre: "Samsung 8GB DDR4", precio: 18000 },
-  { id: 3, nombre: "Kingston 16 DDR4", precio: 28000 },
-];
-
-let arregloPowerSupply = [
-  { id: 1, nombre: "MSI MPG A850GF 850 Watt", precio: 49000 },
-  { id: 2, nombre: "Corsair CS Series 750 Watt", precio: 43000 },
-  { id: 3, nombre: "EVGA ATX 12V 600 Watt", precio: 38500 },
-];
-*/
 
 
 
 var txtProcesador = document.getElementById("valorProcesador");
 var txtMonitor = document.getElementById("valorMonitor");
 var txtDiscoDuro = document.getElementById("valorDiscoDuro");
+var txtTarjeta = document.getElementById("valorTarjetaMadre");
+var txtRam = document.getElementById("valorMemoriaRam");
+var txtPowerSupply = document.getElementById("valorPowerSupply");
 
 function GuardarValorSeleccion(select) {
   if (select.id == "selectProcesador") {
@@ -330,21 +296,49 @@ function GuardarValorSeleccion(select) {
     } else {
       txtMonitor.value = "0";
     }
-  } else {
+  } else if (select.id == "selectDiscoDuro") {
     console.log("disco duro");
     if (select.selectedIndex !== 0) {
       txtDiscoDuro.value = select.options[select.selectedIndex].value;
     } else {
       txtDiscoDuro.value = "0";
     }
+  } else if (select.id == "selectTarjetaMadre"){
+    console.log("Tarjeta Madre");
+    if (select.selectedIndex !== 0) {
+        txtTarjeta.value = select.options[select.selectedIndex].value;
+    }else {
+        txtTarjeta.value = "0";
+    }
+  }else if (select.id == "selectMemoriaRam"){
+    console.log("Memoria Ram");
+    if (select.selectedIndex !== 0) { 
+        txtRam.value = select.options[select.selectedIndex].value;
+    }else {
+        txtRam.value = "0";
+    }
+  }else {
+    console.log("Power Supply");
+    if (select.selectedIndex !== 0){
+        txtPowerSupply.value = select.options[select.selectedIndex].value;
+    }else {
+        txtPowerSupply.value = "0";
+    }
   }
 }
 
+
+
 function CalcularTotal() {
-  var total = document.getElementById("totalPresupuesto");
-  total.value =
+  var subTotal = document.getElementById("totalPresupuesto");
+  var total = document.getElementById("totalPresupuestoIva");
+  subTotal.value =
     parseInt(txtProcesador.value) +
     parseInt(txtMonitor.value) +
-    parseInt(txtDiscoDuro.value);
-  console.log("Total calculado: " + total.value);
+    parseInt(txtDiscoDuro.value) +
+    parseInt(txtTarjeta.value) +
+    parseInt(txtRam.value) +
+    parseInt(txtPowerSupply.value);
+  console.log("subTotal calculado: " + subTotal.value);
+  total.value = (parseInt(subTotal.value) + parseInt(subTotal.value*0.21));
 }

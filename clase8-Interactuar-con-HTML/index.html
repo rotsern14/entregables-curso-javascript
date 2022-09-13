@@ -124,7 +124,7 @@
               <div class="row py-3 mb-3">
                     <div class="col-md-4" id="procesadorCPU">
                         Procesador:
-                        <select id="selectProcesador" name="selectProcesador" class="form-control" onChange="GuardarValorSeleccion(this)">
+                        <select id="selectProcesador" name="selectProcesador" class="form-control" onchange="GuardarValorSeleccion(this)">
                         <option>Seleccionar...</option>
 
                         </select>
@@ -147,7 +147,7 @@
             <div class="row py-3 mb-3">
                     <div class="col-md-4" id="motherBoard">
                         Tarjeta Madre:
-                        <select id="selectTarjetaMadre" name="selectTarjetaMadre" class="form-control" onChange="GuardarValorSeleccion(this)">
+                        <select id="selectTarjetaMadre" name="selectTarjetaMadre" class="form-control" onchange="GuardarValorSeleccion(this)">
                         <option>Seleccionar...</option>
 
                         </select>
@@ -170,10 +170,6 @@
 
               <div class="col-md-12 my-3">
                 <table class="table table-dark table-bordered">
-                  <caption>
-                    Total:
-                    <input type="number" readOnly="true" id="totalPresupuesto" name="totalPresupuesto">
-                  </caption>
                   <tbody>
                     <tr>
                       <td class="pl-4">
@@ -182,11 +178,11 @@
                       </td>
                       <td class="pl-4">
                         Precio Monitor:
-                        <input type="number" id="valorMonitor" name="valorProcesador" value="0" min="0">
+                        <input type="number" id="valorMonitor" name="valorMonitor" value="0" min="0">
                       </td>
                       <td class="pl-4">
                         Precio Disco Duro:
-                        <input type="number" id="valorDiscoDuro" name="valorProcesador" value="0" min="0">
+                        <input type="number" id="valorDiscoDuro" name="valorDiscoDuro" value="0" min="0">
                       </td>
                     </tr>
                     <tr>
@@ -200,15 +196,30 @@
                     </td>
                     <td class="pl-4">
                         Power Supply:
-                        <input type="number" id="valorMemoriaRam" name="valorMemoriaRam" value="0" min="0">
+                        <input type="number" id="valorPowerSupply" name="valorPowerSupply" value="0" min="0">
                     </td>
                     </tr>
                     <tr>
                       <td colspan="3">
-                          <button type="button" class="btn btn-outline-primary btn-sm d-block mx-1" onClick="CalcularTotal()">Calcular Total</button>
+                          <button type="button" class="btn btn-outline-primary btn-sm d-block mx-1" onclick="CalcularTotal()" >Calcular Total</button>
                       </td>
                     </tr>
                   </tbody>
+                  <tfoot>
+                    <tr>
+                        <td colspan="2">
+                            SubTotal:
+                            <input type="number" readOnly="true" id="totalPresupuesto" name="totalPresupuesto">
+                            +21 % IVA
+
+                        </td>
+                        <td>
+                            Total: 
+                            <input type="number" readOnly="true" id="totalPresupuestoIva" name="totalPresupuestoIva">
+
+                        </td>
+                    </tr>
+                  </tfoot>
                 </table>
               </div>
             </form>
